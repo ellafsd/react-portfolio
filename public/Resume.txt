@@ -1,0 +1,28 @@
+ELLA GIRIN
+Full Stack Developer
+ellagirin82@gmail.com
+Tampa, FL
+US Citizen
+         
+  
+SUMMARY  
+
+• Passionate Full Stack Developer: Eager to leverage foundational skills in both front-end and back-end technologies to build dynamic, user-focused web applications.
+• Problem-Solving Skills: Demonstrated ability to tackle coding challenges and deliver functional solutions, with a keen eye for detail and code optimization.
+• Continuous Learner: Committed to staying updated with the latest industry trends and best practices to continually enhance technical skills and knowledge.
+• Team Collaboration: Adept at working within a team environment, with a strong desire to contribute to collaborative projects. 
+
+SKILLS: 
+• Front End: React, HTML. CSS, Bootstrap, Handlebars
+• Back End: Node.js, Express.js, JavaScript, PostgreSQL, MongoDB
+• Other Tools: GitHub, Jest, Insomnia, Postman
+ 
+
+Education 
+Master of Science: Information System 
+Keller Graduate School of Management 
+ 
+Bachelor of Science: Computer Engineering 
+University of Bahcesehir 
+
+

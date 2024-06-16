@@ -1,9 +1,11 @@
+
 import { Container, Typography } from '@mui/material';
 import Project from '../components/Project';
 
 export default function Portfolio() {
   return (
     <Container
+      id="portfolio"
       sx={{
         display: 'flex',
         flexDirection: 'column',

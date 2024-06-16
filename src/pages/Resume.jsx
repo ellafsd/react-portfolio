@@ -1,13 +1,42 @@
+import React from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function About() {
-  const frontEnd = ["HTML", "CSS", "Bootstrap", "Handlebars", "React"];
+export default function Resume() {
+  const frontEnd = ["React", "HTML", "CSS", "Bootstrap", "Handlebars"];
   const backEnd = ["Node.js", "Express.js", "JavaScript", "PostgreSQL", "MongoDB"];
   const otherTools = ["GitHub", "Jest", "Insomnia", "Postman"];
 
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const link = document.createElement('a');
+    link.href = '/Resume.txt';
+    link.download = 'Resume.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    toast.success("The Resume.txt file has been downloaded!", {
+      position: "top-center", // Center the toast
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      transition: Slide,
+      style: {
+        textAlign: 'center',
+        margin: 'auto',
+        left: 0,
+        right: 0,
+      },
+    });
+  };
+
   return (
     <Container
+    id="resume" 
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -19,8 +48,18 @@ export default function About() {
         paddingBottom: '30px'
       }}
     >
-      <Typography variant="h3" sx={{ textAlign: 'center', marginBottom: '20px', color: 'primary.main' }}>
-        My Development Proficiencies
+      <Typography
+        variant="h3"
+        sx={{
+          textAlign: 'center',
+          marginBottom: '20px',
+          color: 'primary.main',
+          fontWeight: 'bold',
+          fontSize: '2rem',
+          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+        }}
+      >
+        Technical Skill Set
       </Typography>
       <Container
         sx={{
@@ -38,7 +77,19 @@ export default function About() {
             alignItems: 'center'
           }}
         >
-          <Typography variant="h5" sx={{ marginBottom: '10px' }}>Front End</Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              marginBottom: '10px',
+              fontWeight: 'bold',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+              color: 'primary.main',
+              textDecoration: 'underline',
+              fontSize: '1.5rem'
+            }}
+          >
+            Front End
+          </Typography>
           <List>
             {frontEnd.map((prof) => (
               <ListItem key={prof} sx={{ padding: 0 }}>
@@ -54,7 +105,19 @@ export default function About() {
             alignItems: 'center'
           }}
         >
-          <Typography variant="h5" sx={{ marginBottom: '10px' }}>Back End</Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              marginBottom: '10px',
+              fontWeight: 'bold',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+              color: 'primary.main',
+              textDecoration: 'underline',
+              fontSize: '1.5rem'
+            }}
+          >
+            Back End
+          </Typography>
           <List>
             {backEnd.map((prof) => (
               <ListItem key={prof} sx={{ padding: 0 }}>
@@ -70,7 +133,19 @@ export default function About() {
             alignItems: 'center'
           }}
         >
-          <Typography variant="h5" sx={{ marginBottom: '10px' }}>Other Tools</Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              marginBottom: '10px',
+              fontWeight: 'bold',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+              color: 'primary.main',
+              textDecoration: 'underline',
+              fontSize: '1.5rem'
+            }}
+          >
+            Other Tools
+          </Typography>
           <List>
             {otherTools.map((tool) => (
               <ListItem key={tool} sx={{ padding: 0 }}>
@@ -81,24 +156,26 @@ export default function About() {
         </Container>
       </Container>
       <Button
-        color="primary"
-        variant="contained"
-        component="a"
-        href="https://www.linkedin.com/in/ella-girin"
-        target="_blank"
-        sx={{ marginTop: '20px' }}
-      >
-        View My LinkedIn
-      </Button>
-      <Button
         color="secondary"
         variant="contained"
-        component={Link}
-        to="/resume"
+        onClick={handleDownload}
         sx={{ marginTop: '10px' }}
       >
         Download My Resume
       </Button>
+      <ToastContainer
+        position="top-center" // Center the toast
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Slide}
+        style={{ textAlign: 'center' }} // Center text inside the toast
+      />
     </Container>
   );
 }

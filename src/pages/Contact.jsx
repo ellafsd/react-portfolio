@@ -1,129 +1,110 @@
-import { Container, TextField, Button, FormControl, FormLabel, Grid, Typography, Paper } from '@mui/material';
-import { useState } from 'react';
-import { validateEmail } from '../utils/helper';
+import React, { useState } from 'react';
+import { Container, TextField, Button, Typography, Box } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [nameError, setNameError] = useState(false); 
-  const [emailError, setEmailError] = useState(false);
-  const [messageError, setMessageError] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        setNameError(false);
-        break;
-      case 'email':
-        setEmail(value);
-        setEmailError(!validateEmail(value));
-        break;
-      case 'message':
-        setMessage(value);
-        setMessageError(false);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleFormSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    setNameError(false);
-    setEmailError(false);
+    toast.success(`Thank you ${name}, your message has been sent!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      style: {
+        background: "#333",
+        color: "#fff",
+        borderRadius: "8px",
+        textAlign: "center",
+      },
+    });
 
-    if (!name) {
-      setNameError(true);
-      return; 
-    }
-    if (!validateEmail(email)) {
-      setEmailError(true);
-      return; 
-    }
-    if (!message) {
-      setMessageError(true);
-      return;
-    }
-
+    // Reset the form fields
     setName('');
-    setMessage('');
     setEmail('');
-    alert(`Thank you ${name}, your message has been sent`);
+    setMessage('');
   };
 
   return (
-    <Container sx={{ display: 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'column', padding: '20px', backgroundColor: 'background.default' }}>
-      <Typography variant="h2" component="h1" sx={{ marginBottom: '20px', color: 'primary.main', textAlign: 'center' }}>
-        Get in Touch
-      </Typography>
-      <Paper elevation={3} sx={{ padding: '20px', maxWidth: '600px', width: '100%' }}>
-        <form onSubmit={handleFormSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <FormControl fullWidth margin="normal" error={nameError}>
-                <FormLabel htmlFor="name" sx={{ color: 'text.primary' }}>Name</FormLabel>
-                <TextField
-                  id="name"
-                  label="Your Name"
-                  variant="outlined"
-                  value={name}
-                  name="name"
-                  onChange={handleInputChange}
-                  helperText={nameError ? 'Please enter your name' : ''} 
-                  sx={{ marginBottom: '10px' }}
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl fullWidth margin="normal" error={emailError}>
-                <FormLabel htmlFor="email" sx={{ color: 'text.primary' }}>Email Address</FormLabel>
-                <TextField
-                  id="email"
-                  label="Your Email"
-                  variant="outlined"
-                  type="email"
-                  value={email}
-                  name="email"
-                  onChange={handleInputChange}
-                  helperText={emailError ? 'Please enter a valid email address' : ''} 
-                  sx={{ marginBottom: '10px' }}
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl fullWidth margin="normal" error={messageError}>
-                <FormLabel htmlFor="message" sx={{ color: 'text.primary' }}>Message</FormLabel>
-                <TextField
-                  id="message"
-                  label="Your Message"
-                  variant="outlined"
-                  multiline
-                  rows={4}
-                  value={message}
-                  name="message"
-                  onChange={handleInputChange}
-                  helperText={messageError ? 'Please enter a brief message' : ''}
-                  sx={{ marginBottom: '10px' }}
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={12} sx={{ textAlign: 'center' }}>
-              <Button type="submit" variant="contained" sx={{ marginTop: '10px' }}>
-                Submit
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-        {nameError || emailError || messageError ? (
-          <Typography variant="body2" color="error" sx={{ marginTop: '10px', textAlign: 'center' }}>
-            Please fill out all fields correctly.
-          </Typography>
-        ) : null}
-      </Paper>
+    <Container
+      id="contact" 
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '80vh',
+        backgroundColor: '#121212',
+        paddingTop: '30px',
+        paddingBottom: '30px',
+      }}
+    >
+      <Typography variant="h4" sx={{ color: '#00FFFF', marginBottom: '20px' }}>Contact Us</Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '15px',
+          width: '100%',
+          maxWidth: '400px',
+        }}
+      >
+        <TextField
+          label="Name"
+          variant="outlined"
+          fullWidth
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          sx={{ input: { color: '#fff' }, label: { color: '#00FFFF' } }}
+        />
+        <TextField
+          label="Email Address"
+          variant="outlined"
+          type="email"
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          sx={{ input: { color: '#fff' }, label: { color: '#00FFFF' } }}
+        />
+        <TextField
+          label="Message"
+          variant="outlined"
+          multiline
+          rows={4}
+          fullWidth
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+          sx={{ input: { color: '#fff' }, label: { color: '#00FFFF' } }}
+        />
+        <Button type="submit" variant="contained" color="secondary" sx={{ alignSelf: 'center' }}>
+          Submit
+        </Button>
+      </Box>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{ textAlign: 'center' }}
+      />
     </Container>
-  ); 
+  );
 }

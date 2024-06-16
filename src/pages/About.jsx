@@ -1,26 +1,16 @@
+
 import { Container, Typography, Box, Card, CardMedia, Fade } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import image from "../assets/image.jpg"; 
+
 export default function About() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const [isFirstRender, setIsFirstRender] = useState(true);
 
-  useEffect(() => {
-    const timeoutId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
-      setIsFirstRender(false);
-      setVisible(true);
-      setTimeout(() => setVisible(false), 3000);
-    }, 4000);
-
-    return () => clearInterval(timeoutId);
-  }, []);
-
-  const images = image;
 
   return (
-    <Container sx={{
+    <Container id="about" sx={{
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       flexDirection: 'column', flexGrow: 1, position: 'relative'
     }}>
@@ -31,7 +21,6 @@ export default function About() {
           left: 0,
           width: '100%',
           height: '100%',
-         // backgroundImage: `url(${backgroundImage})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -40,7 +29,7 @@ export default function About() {
         }}
       />
       <Fade in={isFirstRender ? true : visible} timeout={1000}>
-        <Card key={image} sx={{ marginTop: "20px" }}>
+        <Card sx={{ marginTop: "20px" }}>
           <CardMedia
             component="img"
             image={image}
