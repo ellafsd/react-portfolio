@@ -3,7 +3,7 @@ An interactive React-based portfolio for showcasing a web developer's projects, 
 ![Homepage](./src/assets/homepage.png)  <br>
 
 # Watch the demo on Netlify
-https://666eecb745ad5ffd7e6ab2bb--adorable-maamoul-4706bc.netlify.app/
+https://adorable-maamoul-4706bc.netlify.app/  <br><br>
 
 # Technologies Used
 React<br>
